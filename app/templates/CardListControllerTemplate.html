@@ -1,0 +1,12 @@
+<div ng-controller="CardListController">
+    <div ng-include="'app/templates/NewCardControllerTemplate.html'"></div>
+    <div ng-if="cards.length">
+        <h2>Card List</h2>
+        <ul>
+            <li ng-repeat="card in cards">
+                <span>{{card.front}} <button ng-click="deleteCard(card)">Delete</button></span>
+            </li>
+        </ul>
+    </div>
+    <div ng-include="'app/templates/QuizControllerTemplate.html'"></div>
+</div>

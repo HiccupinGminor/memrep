@@ -13,7 +13,6 @@ app.controller('QuizController', function($scope, Cards, Quizzer, $timeout) {
     var tick = function() {
         $scope.currentTime = Date.now();
         $scope.$apply(); //Re renders the templates / filters
-        console.log("HERE");
         $timeout(tick, 1000);
     };
 

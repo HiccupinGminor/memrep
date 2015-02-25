@@ -1,0 +1,14 @@
+<div ng-controller="NewCardController">
+    <div ng-if="cards.length==0">
+        <p>Create your first card!</p>
+    </div>
+    <div>
+        <div>
+            <textarea name="" id="" cols="30" rows="10" ng-model="newCard.front" placeholder="What's the name of the concept, the phrase, or idea that you want to remember"></textarea>
+        </div>
+        <div>
+            <textarea name="" id="" cols="30" rows="10" ng-model="newCard.back" placeholder="What details do you want to remember? What will you be quizzed on?"></textarea>
+        </div>
+        <button ng-click="addCard()">Create Card</button>
+    </div>
+</div>
