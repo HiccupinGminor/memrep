@@ -1,8 +1,8 @@
 <div ng-controller="QuizController" ng-if="cards.length">
-    <div ng-repeat="card in cards | filter: greaterThan(currentTime, 'nextReview')" ng-if="$index==reviewIndex">
+    <div ng-repeat="card in quizCards" ng-if="$index==reviewIndex">
         <div class="card">
             <p ng-hide="reviewMode">{{card.front}}</p>
-            <p ng-show="reviewMode">{{card.back}}`</p>
+            <p ng-show="reviewMode">{{card.back}}</p>
         </div>
         <div>
             <ul class="controls">

@@ -1,18 +1,14 @@
-app.controller('QuizController', function($scope, Cards, Quizzer, $timeout) {
+app.controller('QuizController', function($scope, Cards, Quizzer, $timeout, QuizCards) {
 
     $scope.reviewIndex = 0;
     $scope.reviewMode = false;
     $scope.currentTime = Date.now();
-
-    $scope.greaterThan = function(val, prop) {
-        return function(item){
-            return val > item[prop];
-        };
-    };
+    $scope.quizCards = QuizCards.getAll();
 
     var tick = function() {
         $scope.currentTime = Date.now();
-        $scope.$apply(); //Re renders the templates / filters
+        $scope.quizCards = QuizCards.getAll();
+        $scope.$apply(); //Re renders the templates
         $timeout(tick, 1000);
     };
 
@@ -23,9 +19,11 @@ app.controller('QuizController', function($scope, Cards, Quizzer, $timeout) {
 
     function nextCard() {
 
+        $scope.quizCards = QuizCards.getAll();
+
         $scope.reviewMode = false;
 
-        var numCards = $scope.$parent.cards.length;
+        var numCards = $scope.quizCards.length;
 
         if($scope.reviewIndex >= numCards - 1)
         {
