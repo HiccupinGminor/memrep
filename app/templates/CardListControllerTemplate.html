@@ -18,7 +18,7 @@
         <h2>Card List</h2>
         <ul>
             <li ng-repeat="card in cards">
-                <span>{{card.front}} <button ng-click="deleteCard(card)">Delete</button></span>
+                <span>{{card.front}} <button ng-click="deleteCard(card)">Delete</button></span> <span>{{card.nextReview | humanTime}}</span>
             </li>
         </ul>
     </div>
