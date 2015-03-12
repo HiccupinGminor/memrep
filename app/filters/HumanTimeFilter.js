@@ -28,6 +28,10 @@ app.filter('humanTime', function() {
 
             pretty = days + " days";
         }
+        else {
+            pretty = "Due Now";
+        }
+        
         return pretty;
     };
 });
