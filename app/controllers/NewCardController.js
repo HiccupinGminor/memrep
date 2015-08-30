@@ -1,11 +1,12 @@
-app.controller('NewCardController', function($scope, Cards){
+app.controller('NewCardController', function($scope, Cards, $location){
+  $scope.newCard = {};
+  $scope.isCreated = false;
+  
+  $scope.addCard = function() {
+    Cards.addCard($scope.newCard).then(function() {
+	    $scope.newCard = '';
 
-    $scope.newCard = {};
-
-    $scope.addCard = function() {
-
-        $scope.$parent.cards = Cards.addCard($scope.newCard);
-
-        $scope.newCard = '';
-    };
+	    $scope.isCreated = true;
+    });
+  };
 });

@@ -1,21 +1,22 @@
-<div ng-include="'app/templates/NavPartial.html'"></div>
 <div ng-controller="QuizController">
-    <h1>Review Session</h1>
     <div ng-if="quizCards.length">
         <div ng-repeat="card in quizCards" ng-if="$index==reviewIndex">
             <div class="card">
-                <p ng-hide="reviewMode">{{card.front}}</p>
-                <p ng-show="reviewMode">{{card.back}}</p>
+                <div ng-if="!reviewMode" class="front">{{card.front}}</div>
+                <div ng-if="reviewMode" class="back">
+                    {{card.back}}
+                    <p ng-if="!card.back">No content</p>
+                </div>
             </div>
             <div>
                 <ul class="controls">
-                    <li ng-hide="reviewMode"><button ng-click="flipCard(card)">Flip</button></li>
-                    <li ng-show="reviewMode"><button ng-click="markCorrect(card)">Right</button></li>
-                    <li ng-show="reviewMode"><button ng-click="markWrong(card)">Wrong</button></li>
+                    <li ng-hide="reviewMode"><button ng-click="flipCard()">Flip</button></li>
                     <li><button ng-click="skipCard()">Skip</button></li>
+                    <li ng-show="reviewMode"><button ng-click="markCorrect(card)" class="success">Right</button></li>
+                    <li ng-show="reviewMode"><button ng-click="markWrong(card)" class="alert">Wrong</button></li>
                 </ul>
             </div>
         </div>
     </div>
-    <p ng-if="!quizCards.length">You have no cards to review at the moment.</p>
+    <p ng-if="!quizCards.length">You have no <a href="#/cards">cards</a> to review at the moment.</p>
 </div>

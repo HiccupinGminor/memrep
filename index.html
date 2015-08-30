@@ -6,16 +6,29 @@
 	<script src="bower_components/angular/angular.js"></script>
 	<script src="bower_components/angular-local-storage/dist/angular-local-storage.js"></script>
 	<script src="bower_components/angular-route/angular-route.js"></script>
+	<script src="bower_components/angular-growl-notifications/dist/angular-growl-notifications.js"/></script>
+	<script src="bower_components/angular-growl-notifications/dist/angular-growl-notifications.css"></script>
 	<script src="app/app.js"></script>
 	<script src="app/controllers/CardListController.js"></script>
 	<script src="app/controllers/NewCardController.js"></script>
 	<script src="app/controllers/QuizController.js"></script>
+	<script src="app/controllers/MenuController.js"></script>
 	<script src="app/factories/Cards.js"></script>
 	<script src="app/factories/Quizzer.js"></script>
 	<script src="app/factories/QuizCards.js"></script>
 	<script src="app/filters/HumanTimeFilter.js"></script>
+	<script src="app/services/ChromeStorageService.js"></script>
+	<link href="css/foundation.min.css" rel="stylesheet" type="text/css"></style>
+	<link href="css/main.css" rel="stylesheet" type="text/css"></style>
 </head>
-<body ng-cloak>
-	<div ng-view></div>
+<body ng-cloak class="">
+	<div class="row">
+	  <div class="small-12 medium-3 large-2 columns">
+	  	<div ng-include="'app/templates/NavPartial.html'"></div>
+	  </div>
+	  <div class="small-12 medium-9 large-10 columns">
+	  	<div ng-view></div>
+	  </div>
+	</div>
 </body>
 </html>

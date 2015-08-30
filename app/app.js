@@ -1,4 +1,4 @@
-var app = angular.module('app', ['LocalStorageModule', 'ngRoute']);
+var app = angular.module('app', ['ChromeStorageModule', 'ngRoute']);
 
 app.config(['$routeProvider', function($routeProvider){
 
@@ -11,10 +11,11 @@ app.config(['$routeProvider', function($routeProvider){
 			templateUrl: 'app/templates/QuizControllerTemplate.html',
 			controller: 'QuizController',
 		})
-		.when('/', {
-			templateUrl: 'app/templates/MenuTemplate.html',
+		.when('/new', {
+			templateUrl: 'app/templates/NewCardTemplate.html',
+			controller: 'NewCardController',
 		})
 		.otherwise({
-			redirectTo: '/'
+			redirectTo: '/cards'
 		});
 }]);

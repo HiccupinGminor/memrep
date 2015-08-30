@@ -1,4 +1,6 @@
-app.factory('Cards', function(localStorageService) {
+app.factory('Cards', function(ChromeStorage) {
+
+    var cardPrefix = 'mc-';
 
     function cardMatch(card1, card2) {
         if(card1.front == card2.front && card1.back == card2.back) {
@@ -7,68 +9,61 @@ app.factory('Cards', function(localStorageService) {
         return false;
     }
 
-    return {
+    function stripPrefix(string) {
+
+        return string.replace(cardPrefix, '');
+    }
+
+    function addPrefix(string) {
+
+        return cardPrefix + string;
+    }
+
+    var obj =  {
+
         getCards: function() {
-            return localStorageService.get('cards') || [];
+          return ChromeStorage.all().then(function(items) {
+            var re = '^' + cardPrefix;
+            var results = [];
+            var strippedKey;
+            var obj;
+
+            for (key in items) {
+              if (key.match(re) != null) {
+                strippedKey = stripPrefix(key);
+                obj = items[key];
+                obj.front = strippedKey;
+                results.push(items[key]);
+              }
+            }
+
+            return results;
+          });
         },
 
         addCard: function(newCard) {
-            var cards;
+          // TODO verify newCard is in proper format
+          newCard.streak = newCard.streak || 0;
+          newCard.nextReview = newCard.nextReview || 0;
 
-            newCard.streak = newCard.streak || 0;
-            newCard.nextReview = newCard.nextReview || 0;
-
-            cards = localStorageService.get('cards') || [];
-            
-            cards.push(newCard);
-
-            localStorageService.set('cards', cards);
-
-            return cards;
+          return ChromeStorage.set(addPrefix(newCard.front), newCard);
         },
 
-        findCard: function(card) {
-            cards = localStorageService.get('cards');
-
-            for (var i = 0; i < cards.length; i++) {
-                if(cardMatch(cards[i], card)) {
-                    return cards[i];
-                }
-            }
-
-            return false;           
+        findCard: function(key) {
+            return ChromeStorage.get(addPrefix(key));
         },
 
-        deleteCard: function(card) {
-            var cards;
+        deleteCard: function(key) {
+            return ChromeStorage.delete(addPrefix(key));
+        },
 
-            cards = localStorageService.get('cards');
-
-            cards.forEach(function(value, index, array) {
-
-                if(cardMatch(value, card)) {
-                    array.splice(index, 1);
-                }
+        updateCard: function(card) {
+            //Replace existing card with new one
+            return obj.deleteCard(addPrefix(card.front)).then(function(){
+              return obj.addCard(card);
             });
-
-            localStorageService.set('cards', cards);
-
-            return cards;           
-        },
-
-        updateCard: function(card, updates) {
-            var storedCard = this.findCard(card);
-            if(storedCard) {
-                //Execute update
-                for(var key in storedCard) {
-                    storedCard[key] = updates[key] || storedCard[key];
-                }
-                //Replace existing card with new one
-                this.deleteCard(storedCard);
-
-                return this.addCard(storedCard);
-            }
-            else return false;
         },
     };
+
+    return obj;
 });

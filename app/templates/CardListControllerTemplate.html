@@ -1,25 +1,23 @@
-<div ng-include="'app/templates/NavPartial.html'"></div>
 <div ng-controller="CardListController">
-    <div ng-controller="NewCardController">
-        <div ng-if="cards.length==0">
-            <p>Create your first card!</p>
-        </div>
-        <div>
-            <div>
-                <textarea name="" id="" cols="30" rows="10" ng-model="newCard.front" placeholder="What's the name of the concept, the phrase, or idea that you want to remember"></textarea>
-            </div>
-            <div>
-                <textarea name="" id="" cols="30" rows="10" ng-model="newCard.back" placeholder="What details do you want to remember? What will you be quizzed on?"></textarea>
-            </div>
-            <button ng-click="addCard()">Create Card</button>
-        </div>
-    </div>
     <div ng-if="cards.length">
-        <h2>Card List</h2>
-        <ul>
-            <li ng-repeat="card in cards">
-                <span>{{card.front}} <button ng-click="deleteCard(card)">Delete</button></span> <span>{{card.nextReview | humanTime}}</span>
-            </li>
-        </ul>
+        <table>
+            <thead>
+                <th>Front</th>
+                <th>Back</th>
+                <th>Next Review</th>
+                <th>&nbsp;</th>
+            </thead>
+            <tbody>
+                <tr ng-repeat="card in cards">
+                    <th>{{card.front}}</th>
+                    <td>{{card.back}}</td>
+                    <td>{{card.nextReview | humanTime}}</td>
+                    <td>
+                        <button ng-click="deleteCard(card)" class="button alert">Delete</button>
+                        <button ng-click="editCard(card)" class="button">Edit</button>
+                    <td>
+                </tr>
+            </tbody>
+        </table>
     </div>
 </div>

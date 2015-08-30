@@ -1,5 +1,5 @@
-<ul>
-	<li><a href="#/">Menu</a></li>
-	<li><a href="#/cards">Cards</a></li>
-	<li><a href="#/review">Review Session</a></li>
+<ul ng-controller="MenuController" class="side-nav">
+	<li ng-class="{selected: (currentUrl.path() == '/cards')}"><a href="#/cards">All Cards</a></li>
+	<li ng-class="{selected: (currentUrl.path() == '/new')}"><a href="#/new">New Card</a></li>
+	<li ng-class="{selected: (currentUrl.path() == '/review')}"><a href="#/review">Review Session</a></li>
 </ul>

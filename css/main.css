@@ -1,0 +1,35 @@
+ul.controls li {
+	list-style: none;
+	float:left;
+	margin-right: .5rem;
+}
+
+ul.controls {
+	margin-left: 0;
+}
+
+html, body {
+    overflow-y: visible;
+}
+
+.selected {
+	background-color: #EEE;
+}
+
+.card {
+	padding: 2rem;
+	border: 1px solid #CCC;
+	border-bottom-color: #AAA;
+	border-radius: 15px;
+	height:300px;
+	margin-bottom: 1rem;
+}
+
+.card .front {
+
+	font-weight: bold;
+}
+
+.row:first-child {
+	margin-top: 1rem;
+}

@@ -1,10 +1,17 @@
 app.controller('CardListController', function($scope, Cards){
 
-    $scope.cards = Cards.getCards();
+    Cards.getCards().then(function(cards) {
+    	$scope.cards = cards;
+    });
 
     $scope.deleteCard = function(card) {
-        var cards = Cards.deleteCard(card);
 
-        $scope.cards = cards;
+        Cards.deleteCard(card.front).then(function() {
+        	return Cards.getCards();
+        })
+        .then(function(cards) {
+        	$scope.cards = cards;
+        });
+
     };
 });
