@@ -14,10 +14,11 @@
                     <td>{{card.nextReview | humanTime}}</td>
                     <td>
                         <button ng-click="deleteCard(card)" class="button alert">Delete</button>
-                        <button ng-click="editCard(card)" class="button">Edit</button>
                     <td>
                 </tr>
             </tbody>
         </table>
+        <div ng-controller="NewCardController">
+        </div>    
     </div>
 </div>
