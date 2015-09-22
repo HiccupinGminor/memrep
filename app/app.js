@@ -1,4 +1,4 @@
-var app = angular.module('app', ['ChromeStorageModule', 'ngRoute']);
+var app = angular.module('app', ['ChromeStorageModule', 'ngRoute', 'ui-notification', 'StorageModule']);
 
 app.config(['$routeProvider', function($routeProvider){
 
@@ -19,3 +19,9 @@ app.config(['$routeProvider', function($routeProvider){
 			redirectTo: '/cards'
 		});
 }]);
+
+app.config(function(NotificationProvider) {
+	NotificationProvider.setOptions({
+		delay: 1000
+	});
+});

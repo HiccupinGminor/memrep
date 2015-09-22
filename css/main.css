@@ -3,7 +3,6 @@ ul.controls li {
 	float:left;
 	margin-right: .5rem;
 }
-
 ul.controls {
 	margin-left: 0;
 }
@@ -11,17 +10,47 @@ ul.controls {
 html, body {
     overflow-y: visible;
 }
-
 .selected {
 	background-color: #EEE;
+}
+h1	{
+	font-weight:bold;
+}
+
+.promo h1 {
+	color: #d9534f;
+	font-size:3rem;
+}
+.promo h2 {
+	font-size:1.75rem;
+	color: #003f54;
+	font-weight:bold;
+}
+.promo {
+	margin-bottom:2rem;
 }
 
 .card {
 	padding: 2rem;
 	border: 1px solid #CCC;
 	border-bottom-color: #AAA;
-	border-radius: 15px;
-	height:300px;
+	border-radius: 10px;
+	min-height:300px;
+	margin-bottom: 1rem;
+	background-color: #fff;
+}
+
+.large-card {
+	padding: 2rem;
+	border-radius: 10px;
+	min-height:300px;
+	margin-bottom: 1rem;
+}
+
+.mini-card {
+	padding: .5rem;
+	border-radius: 5px;
+	height:50px;
 	margin-bottom: 1rem;
 }
 
@@ -30,6 +59,33 @@ html, body {
 	font-weight: bold;
 }
 
-.row:first-child {
-	margin-top: 1rem;
+growl-notifications{
+	position: fixed;
+	top: 20px;
+	left: 10px;
+	z-index: 1000;
+}
+
+growl-notification{
+	padding: 10px 20px;
+	margin-bottom: 15px;
+	background-color: #F2F2F2;
+}
+
+.stage {
+	border: 1px solid #EEE;
+	padding: 1rem;
+	background-color: #FAFAFA;
+}
+
+.row.no-gutters {
+	margin-right: 0;
+	margin-left: 0;
+}
+.row.no-gutters > [class^="columns"],
+.row.no-gutters > [class*=" columns"] {
+	padding-right: 0;
+	padding-left: 0;
+}.row:first-child {
+	margin-top:0;
 }

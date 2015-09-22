@@ -1,4 +1,4 @@
-app.controller('CardListController', function($scope, Cards){
+app.controller('CardListController', function($scope, Cards, Notification){
 
     Cards.getCards().then(function(cards) {
     	$scope.cards = cards;
@@ -11,7 +11,15 @@ app.controller('CardListController', function($scope, Cards){
         })
         .then(function(cards) {
         	$scope.cards = cards;
-        });
 
+            Notification.primary('Deleted');
+        });
+    };
+
+    $scope.editCard = function(card, index) {
+
+        Cards.updateCard(card).then(function() {
+            Notification.primary('Edited');
+        });
     };
 });

@@ -9,7 +9,7 @@
                 </div>
             </div>
             <div>
-                <ul class="controls">
+                <ul class="controls clearfix">
                     <li ng-hide="reviewMode"><button ng-click="flipCard()">Flip</button></li>
                     <li><button ng-click="skipCard()">Skip</button></li>
                     <li ng-show="reviewMode"><button ng-click="markCorrect(card)" class="success">Right</button></li>
@@ -18,5 +18,8 @@
             </div>
         </div>
     </div>
-    <p ng-if="quizCards&&!quizCards.length">You have no <a href="#/cards">cards</a> to review at the moment.</p>
+    <div ng-if="quizCards&&!quizCards.length" class="card large-card">
+        <h2>Sorry,</h2>
+        <p>You have no <a href="#/cards">cards</a> to review at the moment.</p>
+    </div>
 </div>

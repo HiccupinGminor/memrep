@@ -1,6 +1,9 @@
 <div ng-controller="CardListController">
+    <growl-notification ng-if="hasBeenEdited" ttl="1000">
+      Edited
+    </growl-notification>
     <div ng-if="cards.length">
-        <table>
+        <table class="compact">
             <thead>
                 <th>Front</th>
                 <th>Back</th>
@@ -10,15 +13,25 @@
             <tbody>
                 <tr ng-repeat="card in cards">
                     <th>{{card.front}}</th>
-                    <td>{{card.back}}</td>
+                    <td><textarea ng-model="card.back" heigth="100%"></textarea></td>
                     <td>{{card.nextReview | humanTime}}</td>
                     <td>
-                        <button ng-click="deleteCard(card)" class="button alert">Delete</button>
+                        <a ng-click="deleteCard(card)">Delete</a> |
+                        <a ng-click="editCard(card)">Save</a>
                     <td>
                 </tr>
             </tbody>
         </table>
         <div ng-controller="NewCardController">
         </div>    
+    </div>
+    <div ng-if="!cards.length" class="card large-card">
+        <div class="promo">
+        <h1>Memrep</h1>
+        <h2>Learn with the power of spaced repetition</h2>
+        </div>
+        <p>Staggering your reviews with increasing intervals enables solid retention.</p>
+        <p>This magic deck of flash cards automatically requizzes you when you most need a review.</p>
+        <a href="/#/new" class="button">Create a card</a>
     </div>
 </div>

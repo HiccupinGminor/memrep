@@ -1,4 +1,4 @@
-app.controller('NewCardController', function($scope, Cards, $location){
+app.controller('NewCardController', function($scope, Cards, $location, Notification){
   $scope.newCard = {};
   $scope.isCreated = false;
   
@@ -7,6 +7,8 @@ app.controller('NewCardController', function($scope, Cards, $location){
 	    $scope.newCard = '';
 
 	    $scope.isCreated = true;
+
+        Notification.primary('Created');
     });
   };
 });

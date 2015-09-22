@@ -1,9 +1,15 @@
 'use strict';
 
 angular.module('ChromeStorageModule', [])
-	.service('ChromeStorage', function($q) {
-		var store = chrome.storage.sync;
-		var parent = this;
+	.service('ChromeStorageService', function($q) {
+
+		try {
+			var store = chrome.storage.sync;
+		}
+		catch(error) {
+			// console.log(error);
+		}
+
 
 		this.all = function(key) {
 			var deferred = $q.defer();

@@ -6,6 +6,7 @@
 	<script src="bower_components/angular/angular.js"></script>
 	<script src="bower_components/angular-local-storage/dist/angular-local-storage.js"></script>
 	<script src="bower_components/angular-route/angular-route.js"></script>
+	<script src="bower_components/angular-ui-notification/dist/angular-ui-notification.min.js"></script>
 	<script src="app/app.js"></script>
 	<script src="app/controllers/CardListController.js"></script>
 	<script src="app/controllers/NewCardController.js"></script>
@@ -16,16 +17,20 @@
 	<script src="app/factories/QuizCards.js"></script>
 	<script src="app/filters/HumanTimeFilter.js"></script>
 	<script src="app/services/ChromeStorageService.js"></script>
+	<script src="js/angular-local-storage.js"></script>
+	<script src="app/services/StorageService.js"></script>
 	<link href="css/foundation.min.css" rel="stylesheet" type="text/css"></style>
 	<link href="css/main.css" rel="stylesheet" type="text/css"></style>
+	<link rel="stylesheet" href="bower_components/angular-ui-notification/dist/angular-ui-notification.min.css">
 </head>
-<body ng-cloak class="">
-	<div class="row">
-	  <div class="small-12 medium-3 large-2 columns">
+<body ng-cloak>
+	<div class="row no-gutters">
+
+	  <div class="small-12 medium-3 large-2 columns ledge">
 	  	<div ng-include="'app/templates/NavPartial.html'"></div>
 	  </div>
 	  <div class="small-12 medium-9 large-10 columns">
-	  	<div ng-view></div>
+	  	<div ng-view class="stage"></div>
 	  </div>
 	</div>
 </body>

@@ -1,6 +1,4 @@
-app.factory('Cards', function(ChromeStorage) {
-
-    var cardPrefix = 'mc-';
+app.factory('Cards', function(StorageService) {
 
     function cardMatch(card1, card2) {
         if(card1.front == card2.front && card1.back == card2.back) {
@@ -9,35 +7,11 @@ app.factory('Cards', function(ChromeStorage) {
         return false;
     }
 
-    function stripPrefix(string) {
-
-        return string.replace(cardPrefix, '');
-    }
-
-    function addPrefix(string) {
-
-        return cardPrefix + string;
-    }
-
     var obj =  {
 
         getCards: function() {
-          return ChromeStorage.all().then(function(items) {
-            var re = '^' + cardPrefix;
-            var results = [];
-            var strippedKey;
-            var obj;
-
-            for (key in items) {
-              if (key.match(re) != null) {
-                strippedKey = stripPrefix(key);
-                obj = items[key];
-                obj.front = strippedKey;
-                results.push(items[key]);
-              }
-            }
-
-            return results;
+          return StorageService.all().then(function(items) {
+            return items;
           });
         },
 
@@ -46,21 +20,25 @@ app.factory('Cards', function(ChromeStorage) {
           newCard.streak = newCard.streak || 0;
           newCard.nextReview = newCard.nextReview || 0;
 
-          return ChromeStorage.set(addPrefix(newCard.front), newCard);
+          return StorageService.set(newCard.front, newCard);
         },
 
         findCard: function(key) {
-            return ChromeStorage.get(addPrefix(key));
+            return StorageService.get(key);
         },
 
         deleteCard: function(key) {
-            return ChromeStorage.delete(addPrefix(key));
+            return StorageService.delete(key);
         },
 
         updateCard: function(card) {
             //Replace existing card with new one
-            return obj.deleteCard(addPrefix(card.front)).then(function(){
-              return obj.addCard(card);
+            var newCard = {front: card.front, back: card.back};
+            newCard.streak = card.streak || 0;
+            newCard.nextReview = card.nextReview || 0;
+
+            return obj.deleteCard(card.front).then(function(){
+              return obj.addCard(newCard);
             });
         },
     };
