@@ -47,10 +47,11 @@ angular.module('StorageModule', ['ChromeStorageModule', 'LocalStorageModule'])
     .service('StorageService', function(ChromeStorageService, LocalStorageAdapter) {
         var store;
 
-        if(chrome && chrome.storage && chrome.storage.sync) {
+        try {
+            chrome && chrome.storage.sync;
             store = ChromeStorageService; // If chrome storage is available, use chrome
         }
-        else {
+        catch(error) {
             store = LocalStorageAdapter; // Else back up to angular local storage
         }
 
